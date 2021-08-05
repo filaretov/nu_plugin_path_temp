@@ -7,11 +7,11 @@ use nu_plugin::{serve_plugin, Plugin};
 use nu_protocol::{CallInfo, ReturnSuccess, ReturnValue, Signature, UntaggedValue, Value};
 use nu_source::Tag;
 
-struct Len;
+struct PathTemp;
 
-impl Len {
-    fn new() -> Len {
-        Len
+impl PathTemp {
+    fn new() -> PathTemp {
+        PathTemp
     }
 
     fn temp_dir(&mut self) -> Result<Value, ShellError> {
@@ -44,7 +44,7 @@ impl Len {
     }
 }
 
-impl Plugin for Len {
+impl Plugin for PathTemp {
     fn config(&mut self) -> Result<Signature, ShellError> {
         Ok(Signature::build("path temp")
             .desc("Create a directory in the system's temporary directory")
@@ -61,5 +61,5 @@ impl Plugin for Len {
 }
 
 fn main() {
-    serve_plugin(&mut Len::new());
+    serve_plugin(&mut PathTemp::new());
 }
